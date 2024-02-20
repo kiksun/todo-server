@@ -1,18 +1,16 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net/http"
+
+	"github.com/kiksun/todo-server/handlers"
 )
 
 func main() {
-	helloHandler := func(w http.ResponseWriter, req *http.Request) {
-		log.Println(req)
-		io.WriteString(w, "Hello, world!\n")
-	}
 
-	http.HandleFunc("/", helloHandler)
+	http.HandleFunc("/", handlers.HelloHandler)
+
 	log.Println("server start at port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
